@@ -4,8 +4,8 @@ class Program
 {
     static void Main()
     {
-        string referenceText = "Proverbs 3:5-6";
-        string scriptureText = "Trust in the Lord with all thine heart and lean not unto thine own understanding; in all thy ways acknowledge him, and he shall direct thy paths.";
+        string referenceText = "Ether 12:12";
+        string scriptureText = "For if there be no faith among the children of men God can do no miracle among them; wherefore, he showed not himself until after their faith.";
 
         Reference reference = new Reference(referenceText);
         Scripture scripture = new Scripture(reference, scriptureText);
