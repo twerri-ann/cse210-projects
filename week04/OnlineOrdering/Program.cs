@@ -2,35 +2,53 @@ using System;
 
 class Program
 {
-     static void Main(string[] args)
+    static void Main(string[] args)
     {
-        // Create addresses
-        Address usaAddress = new Address("123 Main St", "Dallas", "TX", "USA");
-        Address canadaAddress = new Address("456 King St", "Vancouver", "BC", "Canada");
+        Console.WriteLine("Enter customer name:");
+        string name = Console.ReadLine();
 
-        // Create customers
-        Customer customer1 = new Customer("Alice Johnson", usaAddress);
-        Customer customer2 = new Customer("Bob Smith", canadaAddress);
+        Console.WriteLine("Enter street address:");
+        string street = Console.ReadLine();
 
-        // Create orders
-        Order order1 = new Order(customer1);
-        order1.AddProduct(new Product("Laptop", "P1001", 999.99, 1));
-        order1.AddProduct(new Product("Mouse", "P1002", 19.99, 2));
+        Console.WriteLine("Enter city:");
+        string city = Console.ReadLine();
 
-        Order order2 = new Order(customer2);
-        order2.AddProduct(new Product("Notebook", "P2001", 3.99, 5));
-        order2.AddProduct(new Product("Pen", "P2002", 1.49, 10));
+        Console.WriteLine("Enter state/province:");
+        string state = Console.ReadLine();
 
-        // Store orders in a list
-        List<Order> orders = new List<Order> { order1, order2 };
+        Console.WriteLine("Enter country:");
+        string country = Console.ReadLine();
 
-        // Display order details
-        foreach (Order order in orders)
+        Address address = new Address(street, city, state, country);
+        Customer customer = new Customer(name, address);
+        Order order = new Order(customer);
+
+        Console.Write("How many products to add? ");
+        int productCount = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= productCount; i++)
         {
-            Console.WriteLine(order.GetPackingLabel());
-            Console.WriteLine(order.GetShippingLabel());
-            Console.WriteLine($"Total Cost: ${order.GetTotalCost():0.00}");
-            Console.WriteLine(new string('-', 40));
+            Console.WriteLine($"\nEnter info for product #{i}:");
+
+            Console.Write("Product name: ");
+            string productName = Console.ReadLine();
+
+            Console.Write("Product ID: ");
+            string productId = Console.ReadLine();
+
+            Console.Write("Price: ");
+            double price = double.Parse(Console.ReadLine());
+
+            Console.Write("Quantity: ");
+            int quantity = int.Parse(Console.ReadLine());
+
+            Product product = new Product(productName, productId, price, quantity);
+            order.AddProduct(product);
         }
+
+        // Displaying order info
+        Console.WriteLine("\n" + order.GetPackingLabel());
+        Console.WriteLine(order.GetShippingLabel());
+        Console.WriteLine($"Total Cost: ${order.GetTotalCost():0.00}");
     }
 }
