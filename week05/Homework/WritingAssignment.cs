@@ -1,28 +1,21 @@
-public class Assignment
+public class WritingAssignment : Assignment
 {
-    private string _studentName;
-    private string _topic;
+    private string _title;
 
-    public Assignment(string studentName, string topic)
+    // Notice the syntax here that the WritingAssignment constructor has 3 parameters and then
+    // it passes 2 of them directly to the "base" constructor, which is the "Assignment" class constructor.
+    public WritingAssignment(string studentName, string topic, string title)
+        : base(studentName, topic)
     {
-        _studentName = studentName;
-        _topic = topic;
+        // Here we set any variables specific to the WritingAssignment class
+        _title = title;
     }
 
-    // We will provide Getters for our private member variables so they can be accessed
-    // later both outside the class as well is in derived classes.
-    public string GetStudentName()
+    public string GetWritingInformation()
     {
-        return _studentName;
-    }
+        // Notice that we are calling the getter here because _studentName is private in the base class
+        string studentName = GetStudentName();
 
-    public string GetTopic()
-    {
-        return _topic;
-    }
-
-    public string GetSummary()
-    {
-        return _studentName + " - " + _topic;
+        return $"{_title} by {studentName}";
     }
 }
