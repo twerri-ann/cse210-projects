@@ -1,28 +1,26 @@
 using System;
 using System.Collections.Generic;
 
-// Base Activity class
-public abstract class Activity
+abstract class Activity
 {
     private DateTime _date;
-    private int _lengthMinutes;
+    private int _minutes;
 
-    public Activity(DateTime date, int lengthMinutes)
+    public Activity(DateTime date, int minutes)
     {
         _date = date;
-        _lengthMinutes = lengthMinutes;
+        _minutes = minutes;
     }
 
     public DateTime Date => _date;
-    public int LengthMinutes => _lengthMinutes;
+    public int Minutes => _minutes;
 
-    public abstract double GetDistance(); // in miles
-    public abstract double GetSpeed();    // in mph
-    public abstract double GetPace();     // in min per mile
+    public abstract double GetDistance(); // in km
+    public abstract double GetSpeed();    // in kph
+    public abstract double GetPace();     // min/km
 
     public virtual string GetSummary()
     {
-        return $"{Date:dd MMM yyyy} {this.GetType().Name} ({LengthMinutes} min): " +
-               $"Distance {GetDistance():0.0} miles, Speed {GetSpeed():0.0} mph, Pace: {GetPace():0.0} min per mile";
+        return $"{Date:dd MMM yyyy} {this.GetType().Name} ({Minutes} min): Distance {GetDistance():0.0} km, Speed: {GetSpeed():0.0} kph, Pace: {GetPace():0.00} min per km";
     }
 }

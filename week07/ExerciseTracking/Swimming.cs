@@ -1,16 +1,16 @@
-public class Swimming : Activity
+class Swimming : Activity
 {
     private int _laps;
 
-    public Swimming(DateTime date, int lengthMinutes, int laps)
-        : base(date, lengthMinutes)
+    public Swimming(DateTime date, int minutes, int laps)
+        : base(date, minutes)
     {
         _laps = laps;
     }
 
-    public override double GetDistance() => _laps * 50 / 1000.0 * 0.62;
+    public override double GetDistance() => (_laps * 50) / 1000.0;
 
-    public override double GetSpeed() => (GetDistance() / LengthMinutes) * 60;
+    public override double GetSpeed() => (GetDistance() / Minutes) * 60;
 
-    public override double GetPace() => LengthMinutes / GetDistance();
+    public override double GetPace() => Minutes / GetDistance();
 }
